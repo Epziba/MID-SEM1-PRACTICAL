@@ -1,42 +1,63 @@
 #include <iostream>
+#include <queue>
+#include <string>
 using namespace std;
-class Player {
-protected:
+int main()
+{
+    queue<string> students;
+    int choice;
     string name;
-    int level;
-public:
-    Player(string n, int l) {
-        name = n;
-        level = l;
-    }
-};
-class Warrior : public Player {
-    string weapon;
-public:
-    Warrior(string n, int l, string w) : Player(n, l) {
-        weapon = w;
-    }
-    void display() {
-        cout << "Name: " << name << "\nLevel: " << level
-             << "\nWeapon: " << weapon << endl;
-    }
-};
-class Wizard : public Player {
-    int magicPower;
-public:
-    Wizard(string n, int l, int m) : Player(n, l) {
-        magicPower = m;
-    }
-    void display() {
-        cout << "Name: " << name << "\nLevel: " << level
-             << "\nMagic Power: " << magicPower << endl;
-    }
-};
-int main() {
-    Warrior w("Arjun", 10, "Sword");
-    Wizard z("Ravi", 8, 90);
-    w.display();
-    cout << endl;
-    z.display();
+    {
+        cout << "\n1. Add Student";
+        cout << "\n2. Serve First Student";
+        cout << "\n3. Display Waiting Students";
+        cout << "\n4. Exit";
+        cout << "\nEnter your choice: ";
+        cin >> choice;
+        switch (choice)
+        {
+        case 1:
+            cout << "Enter student name: ";
+            cin >> name;
+            students.push(name);
+            cout << "Student added to the queue.\n";
+            break;
+        case 2:
+            if (students.empty())
+            {
+                cout << "Queue is empty. No student to serve.\n";
+            }
+            else
+            {
+                cout << "Serving student: " << students.front() << endl;
+                students.pop();
+            }
+            break;
+        case 3:
+            if (students.empty())
+            {
+                cout << "Queue is empty. No students are waiting.\n";
+            }
+            else
+            {
+                queue<string> temp = students;
+                cout << "\nWaiting Students:\n";
+
+                while (!temp.empty())
+                {
+                    cout << temp.front() << endl;
+                    temp.pop();
+                }
+            }
+            break;
+        case 4:
+            cout << "Exiting program...\n";
+            break;
+        default:
+            cout << "Please try again.\n";
+        }
+
+    } while (choice != 4);
+
     return 0;
 }
