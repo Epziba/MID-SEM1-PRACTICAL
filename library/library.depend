@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1791433257 source:m:\26pca106\library\main.cpp
+	<iostream>
+	<queue>
+	<string>
+
